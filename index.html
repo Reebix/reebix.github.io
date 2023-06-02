@@ -3,16 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
+    <title>Developement site</title>
     <style>
         html[dark] {
             background-color: #1c1c1c;
             color: #f0f0f0;
         }
+        .toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .toggle-button-light {
+            background-color: #f0f0f0;
+            color: #1c1c1c;
+        }
+        .toggle-button-dark {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+        }
+        .toggle-button:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <h1>Willkommen auf meiner Webseite!</h1>
-    <p>Hier ist ein Beispieltext.</p>
+    <h1>Test Titel</h1>
+    <p>Heheheha.</p>
+    <button class="toggle-button toggle-button-light" onclick="toggleDarkMode()">
+        <img src="sun.png" alt="Sun" class="toggle-image-light", width="32", height="32">
+        <img src="moon.png" alt="Moon" class="toggle-image-dark", width="32", height="32">
+    </button>
+    <script>
+        function toggleDarkMode() {
+            const html = document.querySelector('html');
+            if (html.hasAttribute('dark')) {
+                html.removeAttribute('dark');
+                document.querySelector('.toggle-button').classList.remove('toggle-button-dark');
+                document.querySelector('.toggle-button').classList.add('toggle-button-light');
+                document.querySelector('.toggle-image-light').style.display = 'inline';
+                document.querySelector('.toggle-image-dark').style.display = 'none';
+            } else {
+                html.setAttribute('dark', '');
+                document.querySelector('.toggle-button').classList.remove('toggle-button-light');
+                document.querySelector('.toggle-button').classList.add('toggle-button-dark');
+                document.querySelector('.toggle-image-light').style.display = 'none';
+                document.querySelector('.toggle-image-dark').style.display = 'inline';
+            }
+        }
+        toggleDarkMode();
+        toggleDarkMode();
+    </script>
 </body>
 </html>
