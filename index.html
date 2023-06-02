@@ -16,6 +16,8 @@
             border: none;
             padding: 5px 10px;
             border-radius: 5px;
+            background-color: #1c1c1c;
+            color: #f0f0f0;
         }
         .toggle-button-light {
             background-color: #f0f0f0;
@@ -27,16 +29,27 @@
         }
         .toggle-button:hover {
             cursor: pointer;
+        }.switch-button {
+            margin-top: 50px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: #1c1c1c;
+            border: none;
+        }
+        .switch-button:hover {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <h1>Test Titel</h1>
     <p>Heheheha.</p>
-    <button class="toggle-button toggle-button-light" onclick="toggleDarkMode()">
-        <img src="sun.png" alt="Sun" class="toggle-image-light", width="32", height="32">
+    <button class="toggle-button" onclick="toggleDarkMode()">
+        <img src="sun.png" alt="Sun" class="toggle-image-light", width="32", height="32" hidden>
         <img src="moon.png" alt="Moon" class="toggle-image-dark", width="32", height="32">
     </button>
+    <button class="switch-button" onclick="switchToOtherSite()">Zur anderen Seite wechseln</button>
     <script>
         function toggleDarkMode() {
             const html = document.querySelector('html');
@@ -54,8 +67,11 @@
                 document.querySelector('.toggle-image-dark').style.display = 'inline';
             }
         }
-        toggleDarkMode();
-        toggleDarkMode();
+
+        function switchToOtherSite() {
+            window.location.href = 'http://127.0.0.1:3000/test.html';
+        }
+
     </script>
 </body>
 </html>
