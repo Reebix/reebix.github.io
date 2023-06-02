@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developement site</title>
+    <title>Algorithms</title>
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
+    
     <!--liabries -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script> 
     <script src="styleManagement.js" type="text/javascript"></script>
     <!--start of code-->
 
-    <h1>Test Titel</h1>
-    <burron class="switch-button" onclick="goToAlgorythms()">Go to Algorithms</burron>
+    <h1>Algorithms</h1>
+    <burron class="switch-button" onclick="backToIndex()">Back to Index</burron>
+    <h4>Wave Function Clloapse</h4>
+    
+    <script src="wavefunctioncollapse/wavefunctioncollapse.js"></script>
 
     <button class="toggle-button" onclick="toggleDarkMode()">
         <img src="images/style/sun.png" alt="Sun" class="toggle-image-light", width="32", height="32" hidden>
         <img src="images/style/moon.png" alt="Moon" class="toggle-image-dark", width="32", height="32">
     </button>
+    
 
     <script>
-        function goToAlgorythms() {
-            window.location.href = 'algorithms.html';
+        function backToIndex() {
+            window.location.href = 'index.html';
         }
+   
     </script>
 
 </body>

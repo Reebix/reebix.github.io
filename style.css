@@ -1,0 +1,48 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+html[dark] {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+        }
+        .toggle-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+        }
+        .toggle-button-light {
+            background-color: #f0f0f0;
+            color: #1c1c1c;
+        }
+        .toggle-button-dark {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+        }
+        .toggle-button:hover {
+            cursor: pointer;
+        }.switch-button {
+            margin-top: 5px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: solid 1px;
+        }.switch-button-light {
+            background-color: #f0f0f0;
+            color: #1c1c1c;
+            border: #1c1c1c;
+        }.switch-button-dark {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            border: #f0f0f0;
+        }.switch-button:hover {
+            cursor: pointer;
+        }
