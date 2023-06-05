@@ -46,3 +46,23 @@ html[dark] {
         }.switch-button:hover {
             cursor: pointer;
         }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            color: #f0f0f0;
+            background-color: #1c1c1c;
+            border: 2px solid #f0f0f0;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            color: #f0f0f0;
+            background-color: #1c1c1c;
+            border: 2px solid #f0f0f0;
+            border-radius: 5px;
+            outline: none;
+        }

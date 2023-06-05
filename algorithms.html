@@ -15,16 +15,22 @@
 
     <h1>Algorithms</h1>
     <burron class="switch-button" onclick="backToIndex()">Back to Index</burron>
-    <h4>Wave Function Clloapse</h4>
-    
+    <p> <span style="font-size: medium;">Wave Function Collapse </span><a href="https://github.com/reebix/reebix.github.io/tree/main/wavefunctioncollapse/wavefunctioncollapse.js" target="_blank" style="color: green;">code</a></p>
+
+    <input type="number" placeholder="input size" min="10" max="400" style="width: 15%;" onblur="changeWaveFunctionCollapse(this)" value="50">
+    <script>
+    function changeWaveFunctionCollapse(input) {
+        if (input.value < 10) {
+            input.value = 10;
+        } else if (input.value > 400) {
+            input.value = 400;
+        }
+        size = input.value;
+        setup();
+    }
+    </script>
     <script src="wavefunctioncollapse/wavefunctioncollapse.js"></script>
-
-    <button class="toggle-button" onclick="toggleDarkMode()">
-        <img src="images/style/sun.png" alt="Sun" class="toggle-image-light", width="32", height="32" hidden>
-        <img src="images/style/moon.png" alt="Moon" class="toggle-image-dark", width="32", height="32">
-    </button>
     
-
     <script>
         function backToIndex() {
             window.location.href = 'index.html';
