@@ -92,7 +92,7 @@ return t;
 
 }
 
-const tiles = [new tile([[0,1,0],[1,1,1],[0,1,0]]),new tile([[0,0,0],[0,1,0],[0,0,0]]),new tile([[0,0,0],[0,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,1,0],[1,1,1],[0,0,0]]),new tile([[0,0,0],[1,1,1],[0,0,0]])]; //array of tiles
+const tiles = [new tile([[0,1,0],[1,1,1],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,1,0],[1,1,1],[0,0,0]]),new tile([[0,0,0],[1,1,1],[0,0,0]])]; //array of tiles
 
 let tileVariants = []; //array of tile variants
 let tileMap; //map of tiles
@@ -117,6 +117,10 @@ function setup() {
       tile = tile.createRotate();
     }
   });
+
+  tileVariants.push(new tile([[0,0,0],[0,1,0],[0,1,0]]))
+  tileVariants.push(new tile([[0,0,0],[0,0,0],[0,0,0]]))
+  
 
   for (let y = 0; y < eHeight; y++){
   let line = [];
@@ -188,13 +192,13 @@ function addFittingTile(tile, pos) {
     possible = possible.filter(t => t.canConnect(nt));
   });
 
-  if (possible.length == 0 && tries < 2500) {
+  if (possible.length == 0 && tries < 250) {
     tries++;
     updateTilesWithFreeNeighbours();
     let nt = tilesWithFreeNeighbours[Math.floor(Math.random() * tilesWithFreeNeighbours.length)];
     addFittingTile(nt, getRandomFreePos(nt, nt.pos));
     return;
-  };
+  }
   let t = possible[Math.floor(Math.random() * possible.length)];
   addTile(t, pos);
 }
