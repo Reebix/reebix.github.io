@@ -12,7 +12,9 @@ class tile {
   } 
 
   create(){
-    return new tile(this.sides);
+    let t = new tile(this.sides);
+    t.id = this.id;
+    return t;
   }
 
   draw() {
@@ -26,6 +28,20 @@ class tile {
       for (let y = 0; y < this.sides[x].length; y++)
         if (this.sides[y][x] == 1) {
           rect(this.pos[0] * size + x * size / this.sides.length, this.pos[1] * size + y * size / this.sides.length, size / this.sides.length, size / this.sides.length);
+        }
+}
+
+draw(pos) {
+  stroke(0)
+    fill(25)
+    rect(pos[0] * size, pos[1] * size,size,size)
+    fill(0,255,0)
+    stroke(0,255,0)
+
+    for (let x = 0; x < this.sides.length; x++)
+      for (let y = 0; y < this.sides[x].length; y++)
+        if (this.sides[y][x] == 1) {
+          rect(pos[0] * size + x * size / this.sides.length, pos[1] * size + y * size / this.sides.length, size / this.sides.length, size / this.sides.length);
         }
 }
 
@@ -92,20 +108,22 @@ return t;
 
 }
 
-const tiles = [new tile([[0,1,0],[1,1,1],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,1,0],[1,1,1],[0,0,0]]),new tile([[0,0,0],[1,1,1],[0,0,0]])]; //array of tiles
+const tiles = [new tile([[0,1,0],[1,1,1],[0,1,0]]),new tile([[0,0,0],[0,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,0,0],[1,1,0],[0,1,0]]),new tile([[0,1,0],[1,1,1],[0,0,0]]),new tile([[0,0,0],[1,1,1],[0,0,0]])]; //array of tiles
 
 let tileVariants = []; //array of tile variants
 let tileMap; //map of tiles
 let tilesWithFreeNeighbours = []; //array of tiles with free neighbours
 let emptyTiles = []; //array of empty tiles
+let done; //if done
+let drawMap = new Map(); //map of tiles to draw (improves performance)
 
 function setup() {
   createCanvas(width, height);
 
+  drawMap = new Map();
+  done = false;
   eWidth = width / size;
   eHeight = height / size;
-
-  tries = 0;
   tileMap = [];
   tileVariants = [];
   emptyTiles = [];
@@ -118,9 +136,11 @@ function setup() {
     }
   });
 
-  tileVariants.push(new tile([[0,0,0],[0,1,0],[0,1,0]]))
   tileVariants.push(new tile([[0,0,0],[0,0,0],[0,0,0]]))
   
+  tileVariants.forEach(tile => {
+    tile.id = tileVariants.indexOf(tile);
+  });
 
   for (let y = 0; y < eHeight; y++){
   let line = [];
@@ -132,16 +152,42 @@ function setup() {
   }
   
   randomTile();
+
+  tileVariants.forEach(tile => {
+    drawMap.set(tile.id, []);
+  });
+
+  console.log(drawMap);
+  tileMap.forEach(line => {
+    line.forEach(tile => {
+      if (tile != null) {
+        let array = drawMap.get(tile.id)
+        if(array != null) array.push(tile.pos);
+        drawMap.set(tile.id, array);
+      }
+    });  
+  });
+
+
+  tilesWithFreeNeighbours = []
+  emptyTiles = []
+  tileMap = []
+  done = true;
 }
 
 function draw() {
   background(0);
+  if(!done)
   tileMap.forEach(line => {
     line.forEach(tile => {
       if (tile != null) tile.draw();
     });
   });
-  
+  else drawMap.forEach((value, key) => {
+   if(value != null) value.forEach(pos => {
+      tileVariants[key].draw(pos);
+   });
+  });
 }
 
 function randomTile() {
@@ -192,8 +238,7 @@ function addFittingTile(tile, pos) {
     possible = possible.filter(t => t.canConnect(nt));
   });
 
-  if (possible.length == 0 && tries < 250) {
-    tries++;
+  if (possible.length == 0) {
     updateTilesWithFreeNeighbours();
     let nt = tilesWithFreeNeighbours[Math.floor(Math.random() * tilesWithFreeNeighbours.length)];
     addFittingTile(nt, getRandomFreePos(nt, nt.pos));

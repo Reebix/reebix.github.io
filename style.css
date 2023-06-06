@@ -66,3 +66,11 @@ html[dark] {
             border-radius: 5px;
             outline: none;
         }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 5px;
+            background-color: #1c1c1c;
+            border: 2px solid #f0f0f0;
+            border-radius: 100px;
+        }
