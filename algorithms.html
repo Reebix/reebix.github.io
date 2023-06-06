@@ -17,7 +17,7 @@
     <burron class="switch-button" onclick="backToIndex()">Back to Index</burron>
     <p> <span style="font-size: medium;">Wave Function Collapse </span><a href="https://github.com/reebix/reebix.github.io/tree/main/wavefunctioncollapse/wavefunctioncollapse.js" target="_blank" style="color: green;">code</a></p>
 
-    <input type="number" placeholder="input size" min="10" max="400" style="width: 15%;" oninput="changeWaveFunctionCollapse(this)" onblur="limitInput(this)" value="50">
+    <p> <input type="number" placeholder="input size" min="10" max="400" style="width: 15%;" oninput="changeWaveFunctionCollapse(this)" onblur="limitInput(this)" value="50"> <span style="font-size: small;"> number between 10 and 400</span></p>
     <script>
     function changeWaveFunctionCollapse(input) {
         size = input.value;
