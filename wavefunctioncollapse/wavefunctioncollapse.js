@@ -11,6 +11,7 @@ class tile {
     this.pos = pos;
   } 
 
+  //creates a copy of the tile not copying the position
   create(){
     let t = new tile(this.sides);
     t.id = this.id;
@@ -118,7 +119,8 @@ let done; //if done
 let drawMap = new Map(); //map of tiles to draw (improves performance)
 
 function setup() {
-  createCanvas(width, height);
+createCanvas(width, height);
+
 
   drawMap = new Map();
   done = false;
@@ -157,7 +159,7 @@ function setup() {
     drawMap.set(tile.id, []);
   });
 
-  console.log(drawMap);
+
   tileMap.forEach(line => {
     line.forEach(tile => {
       if (tile != null) {
@@ -168,14 +170,16 @@ function setup() {
     });  
   });
 
-
   tilesWithFreeNeighbours = []
   emptyTiles = []
   tileMap = []
   done = true;
 }
 
+let image;
+
 function draw() {
+  console.log(done);
   background(0);
   if(!done)
   tileMap.forEach(line => {
@@ -184,10 +188,10 @@ function draw() {
     });
   });
   else drawMap.forEach((value, key) => {
-   if(value != null) value.forEach(pos => {
-      tileVariants[key].draw(pos);
+    if(value != null) value.forEach(pos => {
+       tileVariants[key].draw(pos);
+    });
    });
-  });
 }
 
 function randomTile() {
